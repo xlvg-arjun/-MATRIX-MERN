@@ -1,0 +1,53 @@
+version: '2.2'
+
+networks:
+  backend:
+
+volumes:
+  datavolume:
+
+services:
+  web:
+    build: ./web
+    restart: always
+    volumes:
+      - datavolume:/usr/src/app/public
+    ports:
+      - '3000:3000'
+    links:
+      - db:db
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - backend
+
+  db:
+    image: mongo:3.6
+    restart: always
+    ports:
+      - '27017:27017'
+    healthcheck:
+      test: echo 'db.stats().ok'
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    volumes:
+      - datavolume:/data/db
+    networks:
+      - backend
+
+  nginx:
+    restart: always
+    build: ./nginx/
+    tty: false
+    ports:
+      - "80:80"
+    volumes:
+      - datavolume:/www/public
+    links:
+      - web:web
+    depends_on:
+      - web
+    networks:
+      - backend
