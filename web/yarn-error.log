@@ -1,5 +1,5 @@
 Arguments: 
-  /home/arjun/.nvm/versions/node/v8.9.1/bin/node /usr/share/yarn/bin/yarn.js add mongodb
+  /home/arjun/.nvm/versions/node/v8.9.1/bin/node /usr/share/yarn/bin/yarn.js remove express mongodb
 
 PATH: 
   /home/arjun/.rvm/gems/ruby-2.4.1/bin:/home/arjun/.rvm/gems/ruby-2.4.1@global/bin:/home/arjun/.rvm/rubies/ruby-2.4.1/bin:/home/arjun/bin:/home/arjun/.local/bin:/home/arjun/.nvm/versions/node/v8.9.1/bin:/home/arjun/anaconda3/bin:/home/arjun/npm/bin:/home/arjun/anaconda3/bin:/home/arjun/.gvm/pkgsets/go1.9/global/bin:/home/arjun/.gvm/gos/go1.9/bin:/home/arjun/.gvm/pkgsets/go1.9/global/overlay/bin:/home/arjun/.gvm/bin:/home/arjun/.gvm/bin:/home/arjun/bin:/home/arjun/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/home/arjun/Android/Sdk//tools:/home/arjun/Android/Sdk//platform-tools:/home/arjun/.node/bin:/home/arjun/.rvm/bin:/home/arjun/.composer/vendor/bin:/home/arjun/.rvm/bin
@@ -19,8 +19,13 @@ npm manifest:
     "version": "1.0.0",
     "main": "index.js",
     "license": "MIT",
-    "dependencies": {
-      "express": "^4.16.2"
+    "dependencies": {},
+    "devDependencies": {
+      "eslint": "^4.14.0",
+      "eslint-config-airbnb": "^16.1.0",
+      "eslint-plugin-import": "^2.8.0",
+      "eslint-plugin-jsx-a11y": "^6.0.3",
+      "eslint-plugin-react": "^7.5.1"
     }
   }
 
@@ -57,6 +62,10 @@ Lockfile:
       qs "6.5.1"
       raw-body "2.3.2"
       type-is "~1.6.15"
+  
+  bson@~1.0.4:
+    version "1.0.4"
+    resolved "https://registry.yarnpkg.com/bson/-/bson-1.0.4.tgz#93c10d39eaa5b58415cbc4052f3e53e562b0b72c"
   
   bytes@3.0.0:
     version "3.0.0"
@@ -210,6 +219,19 @@ Lockfile:
     version "1.4.1"
     resolved "https://registry.yarnpkg.com/mime/-/mime-1.4.1.tgz#121f9ebc49e3766f311a76e1fa1c8003c4b03aa6"
   
+  mongodb-core@3.0.1:
+    version "3.0.1"
+    resolved "https://registry.yarnpkg.com/mongodb-core/-/mongodb-core-3.0.1.tgz#ff6dc36ee96ff596953d80a6840d6731bc92efed"
+    dependencies:
+      bson "~1.0.4"
+      require_optional "^1.0.1"
+  
+  mongodb@^3.0.1:
+    version "3.0.1"
+    resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.0.1.tgz#278ee8006257ec22798594a6259546825d6de1b2"
+    dependencies:
+      mongodb-core "3.0.1"
+  
   ms@2.0.0:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
@@ -256,9 +278,24 @@ Lockfile:
       iconv-lite "0.4.19"
       unpipe "1.0.0"
   
+  require_optional@^1.0.1:
+    version "1.0.1"
+    resolved "https://registry.yarnpkg.com/require_optional/-/require_optional-1.0.1.tgz#4cf35a4247f64ca3df8c2ef208cc494b1ca8fc2e"
+    dependencies:
+      resolve-from "^2.0.0"
+      semver "^5.1.0"
+  
+  resolve-from@^2.0.0:
+    version "2.0.0"
+    resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-2.0.0.tgz#9480ab20e94ffa1d9e80a804c7ea147611966b57"
+  
   safe-buffer@5.1.1:
     version "5.1.1"
     resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
+  
+  semver@^5.1.0:
+    version "5.4.1"
+    resolved "https://registry.yarnpkg.com/semver/-/semver-5.4.1.tgz#e059c09d8571f0540823733433505d3a2f00b18e"
   
   send@0.16.1:
     version "0.16.1"
