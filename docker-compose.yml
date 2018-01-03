@@ -5,15 +5,17 @@ networks:
 
 volumes:
   datavolume:
+  staticvolume:
 
 services:
   web:
     build: ./web
     restart: always
+    container_name: web
     volumes:
-      - datavolume:/usr/src/app/public
-    ports:
-      - '3000:3000'
+      - staticvolume:/usr/src/app/public
+    expose:
+      - '3000'
     links:
       - db:db
     depends_on:
@@ -23,10 +25,10 @@ services:
       - backend
 
   db:
-    image: mongo:3.6
+    build: ./db
     restart: always
-    ports:
-      - '27017:27017'
+    expose:
+      - '27017'
     healthcheck:
       test: echo 'db.stats().ok'
       interval: 5s
@@ -36,6 +38,7 @@ services:
       - datavolume:/data/db
     networks:
       - backend
+    user: mongodb
 
   nginx:
     restart: always
@@ -44,7 +47,8 @@ services:
     ports:
       - "80:80"
     volumes:
-      - datavolume:/www/public
+      - staticvolume:/www/public
+      - staticvolume:/usr/src/app
     links:
       - web:web
     depends_on:
